@@ -1,31 +1,31 @@
 import React from 'react';
 
 import './AddPerson.css';
-
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { personAddedHandler } from '../../actions/memberUpdate';
 
-const AddPerson = ({data, personAddHandlerFunc}) => {
+const AddPerson = () => {
+    const dispatch = useDispatch();
     const add = () => {
-        personAddHandlerFunc()
-    }
-
+        dispatch(personAddedHandler());
+      }
   return(
     <div className="AddPerson">
         <button onClick={() => add()}>Add Person</button>
     </div>
 )
 }
+export default AddPerson
 
-const mapStateToProps = (state) => {
-    return {
-        data: state.members
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         data: state.members
+//     }
+// }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        personAddHandlerFunc: () => dispatch(personAddedHandler())
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(AddPerson);
+// const mapDispatchToProps = (dispatch) => {
+//     return{
+//         add: () => dispatch(personAddedHandler())
+//     }
+// }
+// export default connect(mapStateToProps, mapDispatchToProps)(AddPerson);
